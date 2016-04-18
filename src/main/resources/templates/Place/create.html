@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('CREATE PLACE')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div th:replace="_nw_temp:: user-profile"></div>
+		<div th:replace="_nw_temp :: user-nav"></div>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="modal-header">
+				<h3 class="text-left" id="login-tit">Create a new place</h3>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-12">
+				<div class="user-name">
+					<h3>
+						You have rated for <span class="label label-info"
+							th:text="${rating.place.placeName}"></span> with <span
+							th:text="${rating.stars}"></span> stars.
+					</h3>
+					Default stars
+					<div class="stars-default"
+						th:attrappend="data-rating='' + ${rating.stars}">
+						<input type="hidden" name="rating" />
+					</div>
+				</div>
+				<div class="user-information">
+					<span>He (She) said that: </span>
+					<p th:text="${rating.comment}"></p>
+				</div>
+			</div>
+		</div>
+		<div th:replace="_nw_temp :: footer"></div>
+	</div>
+</body>
+<div th:include="_nw_temp :: script"></div>
+</html>

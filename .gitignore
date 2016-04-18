@@ -1,0 +1,17 @@
+/.settings/*.prefs
+/.settings/*.prefs
+/.settings/*.prefs
+/.settings/*.prefs
+/target/classes
+/target/maven-status/maven-compiler-plugin/compile/default-compile
+/target/tmp/jsp/org/apache/jsp/jsp/user
+/target/tmp/jsp/org/apache/jsp/tag/web
+/target/
+
+graphdb
+*.swp
+target
+.classpath
+.project
+.class
+bin

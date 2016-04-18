@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('PRODUCT INDEX')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div th:replace="_nw_temp:: user-profile"></div>
+		<div th:replace="_nw_temp :: user-nav"></div>
+		<div class="panel panel-default plain profile-panel">
+			<div class="row" th:if="${session.user}">
+				<table class="table table-striped table-bordered"
+					th:if="${session.user.followings}">
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th>Place Name</th>
+							<th>Stars</th>
+							<th>Comment</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="rating : ${session.user.followings}">
+							<td th:text="${rating.startUser.email}"></td>
+							<td th:text="${rating.startUser.password}"></td>
+							<td th:text="${rating.startUser.birthdate}"></td>
+							<td th:text="${rating.startUser.birthplace}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div th:replace="_nw_temp :: footer"></div>
+	<div th:include="_nw_temp :: script">
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('LOGIN IN')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="modal-header">
+				<h1 class="text-center" id="login-tit">Let's login to begin!</h1>
+			</div>
+			<form role="form" action="/user/login" method="post"
+				class="login-form" th:action="@{/user/login}"
+				th:object="${loginForm}">
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+					<label for="form-email">Email</label> <input type="text"
+						name="form-email" id="form-email" placeholder="Email..."
+						class="form-control input-lg" th:field="*{email}" /> <span
+						class="help-block" th:if="${#fields.hasErrors('email')}"
+						th:errors="*{email}">error!</span>
+				</div>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+					<label for="form-password">Password</label> <input type="password"
+						name="form-password" placeholder="Password..." id="form-password"
+						class="form-control input-lg" th:field="*{password}" /> <span
+						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+						class="help-block">error!</span>
+				</div>
+				<div class="checkbox">
+					<label><input type="checkbox" /> Remember me</label>
+				</div>
+				<button type="submit" class="btn-lg btn-primary pull-right">Sign
+					in!</button>
+			</form>
+		</div>
+	</div>
+	<div th:include="_nw_temp :: script"></div>
+</body>
+</html>

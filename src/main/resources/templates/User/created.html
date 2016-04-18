@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('LOGIN OR REGISTER')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div th:replace="_nw_temp:: user-profile"></div>
+		<div th:replace="_nw_temp :: user-nav"></div>
+		<div class="col-md-3 col-sm-3 col-xs-12"
+			th:if="${session.user.creatings}"
+			th:each="creating : ${session.user.creatings}">
+			<div class="panel-body">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="profile-avatar">
+						<img class="img-responsive"
+							th:src="@{'/images/places/default.jpg'}" alt="profile picture" />
+					</div>
+					<div class="profile-stats-info">
+						<a href="#" title="Traveled Users"> <i
+							class="glyphicon glyphicon-briefcase"> </i> <strong th:text="${creating.place.livedUsers.size()}">100</strong></a>
+						<a href="#" title="Rated Users">
+						<i class="glyphicon glyphicon-star"> </i> <strong th:text="${creating.place.ratedUsers.size()}">120</strong></a><a
+							href="#" title="Lived Users"> <i class="glyphicon glyphicon-home"> </i> <strong th:text="${creating.place.livedUsers.size()}">60</strong></a>
+					</div>
+				</div>
+				<div class="col-lg-10 col-md-10 col-sm-12">
+					<div class="user-name">
+							Created <span class="label label-info"
+								th:text="${creating.place.placeName}"></span><br/> On <span
+								th:text="${creating.startDate}"></span>.
+					</div>
+					<div class="description">
+						<p th:text="${creating.place.description}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="_nw_temp :: script"></div>
+</body>
+</html>

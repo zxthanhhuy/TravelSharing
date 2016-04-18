@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('PLACE DETAIL')">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>User</h2>
+        <table class="table table-striped table-bordered" th:if="${place}" th:object="${place}">
+          <tr>
+            <th class="col-md-3">Node ID</th>
+            <td class="col-md-9" th:text="*{id}">id</td>
+          </tr>
+          <tr>
+            <th>Place Name</th>
+            <td th:text="*{placeName}">Place Name</td>
+          </tr>
+          <tr>
+            <th>City</th>
+            <td th:text="*{city}">City</td>
+          </tr>
+          <tr>
+            <th>Country</th>
+            <td th:text="*{country}">Country</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td th:text="*{description}">Description</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div th:replace="_nw_temp :: footer"></div>
+  </div>
+
+  <div th:include="_nw_temp :: script"></div>
+</body>
+</html>

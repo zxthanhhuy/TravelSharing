@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('RATED PLACES')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div th:replace="_nw_temp:: user-profile"></div>
+		<div th:replace="_nw_temp :: user-nav"></div>
+		<div class="col-md-6 col-sm-6 col-xs-12"
+			th:if="${session.user.followings}"
+			th:each="following : ${session.user.followings}">
+			<div class="panel-body">
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<div class="profile-avatar">
+						<img class="img-responsive"
+							th:src="@{'/images/avatars/' + ${following.endUser.profileImage}}" alt="profile picture" />
+					</div>
+					<div class="profile-stats-info">
+						<a href="#" title="Traveled Users"> <i
+							class="glyphicon glyphicon-briefcase"> </i> <strong
+							th:text="${following.endUser.followings.size()}">100</strong></a> <a
+							href="#" title="Rated Users"> <i
+							class="glyphicon glyphicon-star"> </i> <strong
+							th:text="${following.endUser.followings.size()}">120</strong></a><a
+							href="#" title="Lived Users"> <i
+							class="glyphicon glyphicon-home"> </i> <strong
+							th:text="${following.endUser.followings.size()}">60</strong></a>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-12">
+					<div class="user-name">
+						Followed from <span
+							th:text="${following.startDate}"></span>.
+					</div>
+					<div class="bubble">
+						<a th:href="@{'/user/' + ${following.endUser.userId}}"
+							th:action="@{'/user/' + ${following.endUser.userId}}"><span
+							class="personName" th:text="${following.endUser.name}">Person
+								name:</span></a><br /> <span class="personSay"
+							th:text="${following.endUser.about}">About</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:include="_nw_temp :: script"></div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('REGISTER ACCOUNT')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="modal-header">
+				<h3 class="text-left" id="login-tit">Let's register to begin!</h3>
+			</div>
+			<form role="form" action="/user/register"
+				th:action="@{/user/register}" th:object="${userForm}" method="post"
+				class="registration-form" enctype="multipart/form-data">
+				<div class="form-group">
+					<input id="form-node-id" class="form-control input-lg" type="hidden"
+						name="form-node-id" th:field="*{id}" /> <input id="form-user-id"
+						class="form-control" type="hidden" name="form-user-id"
+						th:field="*{userId}" /> <span
+						th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"
+						class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+					<label class="sr-only" for="form-full-name">Name</label> <input
+						type="text" name="form-full-name" placeholder="Your name..."
+						class="form-control input-lg" id="form-full-name"
+						th:field="*{name}" /> <span th:if="${#fields.hasErrors('name')}"
+						th:errors="*{name}" class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+					<label class="sr-only" for="form-email">Email</label> <input
+						type="text" name="form-email" placeholder="Email..."
+						class="form-control input-lg" id="form-email"
+						th:field="*{email}" /> <span
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+						class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+					<label class="sr-only" for="form-password">Password</label> <input
+						type="password" name="form-password"
+						placeholder="Your password..." class="form-control input-lg"
+						id="form-password" th:field="*{password}" /> <span
+						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+						class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error'">
+					<label class="sr-only" for="form-confirm-password">Confirm
+						password</label> <input type="password" name="form-confirm-password"
+						placeholder="Confirm your password..."
+						class="form-control input-lg"
+						id="form-confirm-password" th:field="*{confirmPassword}" /> <span
+						th:if="${#fields.hasErrors('confirmPassword')}"
+						th:errors="*{confirmPassword}" class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('birthdate')}? 'has-error'">
+					<label class="sr-only" for="form-birthdate">Birthdate</label> <input
+						type="text" name="form-birthdate"
+						placeholder="Your birthdate. (MM/dd/yyyy)"
+						class="form-control input-lg" id="form-birthdate"
+						th:field="*{birthdate}" /> <span
+						th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"
+						class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('birthplace')}? 'has-error'">
+					<label class="sr-only" for="form-birthplace">Birthplace</label> <input
+						type="text" name="form-birthplace"
+						placeholder="Your birthplace..."
+						class="form-control input-lg" id="form-birthplace"
+						th:field="*{birthplace}" /> <span
+						th:if="${#fields.hasErrors('birthplace')}"
+						th:errors="*{birthplace}" class="help-block">error!</span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('phone')}? 'has-error'">
+					<label class="sr-only" for="form-phone">Phone</label> <input
+						type="text" name="form-phone" placeholder="Your phone number..."
+						class="form-control input-lg" id="form-phone"
+						th:field="*{phone}" /> <span
+						th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+						class="help-block">error!</span>
+				</div>
+				<div class="form-group">
+					<label for="uploadImage">Upload profile image</label> <input
+						type="file" id="uploadImage" name="uploadImage" />
+				</div>
+				<button type="submit" class="btn-lg btn-primary pull-right">Sign Me Up</button>
+			</form>
+		</div>
+	</div>
+	<!-- Javascript -->
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+</body>
+
+</html>

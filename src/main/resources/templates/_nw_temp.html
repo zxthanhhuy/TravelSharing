@@ -1,0 +1,132 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header (title)">
+<title th:text="${title}">title</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="/bootstrap-3.3.5/css/bootstrap.min.css"
+	th:href="@{/bootstrap-3.3.5/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="/css/chatbox-bubble.css"
+	th:href="@{/css/chatbox-bubble.css}" rel="stylesheet" />
+<link href="/images/avatars/defaults/default1.png"
+	th:href="@{/images/avatars/defaults/default1.png}" />
+</head>
+<body>
+	<div class="container">
+		<!-- Fixed top navigation bar -->
+		<nav class="navbar navbar-inverse" th:fragment="navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">Open Travel Sharing</a>
+				</div>
+				<ul class="nav navbar-nav">
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/user/index" th:if='${session.user!=null}'
+						th:text='${session.user.name}' th:action="@{/user/register}"><span
+							class="glyphicon glyphicon-user"></span></a></li>
+					<li><a href="/user/register" th:if='${session.user==null}'
+						th:action="@{/user/register}"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="/user/login" th:if='${session.user==null}'
+						th:action="@{/user/login}"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="/user/logout" th:if='${session.user!=null}'
+						th:action="@{/user/logout}"><span
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="row col-md-12 col-sm-12 col-xs-12"
+			th:fragment="user-profile">
+			<div class="panel-body">
+				<div class="col-lg-2 col-md-2 col-sm-12">
+					<div class="profile-avatar">
+						<img class="img-responsive"
+							th:src="@{'/images/avatars/' + ${session.user.profileImage}}"
+							alt="profile picture" />
+					</div>
+				</div>
+				<div class="col-lg-10 col-md-10 col-sm-12">
+					<div class="user-name">
+						<h1>
+							<span class="label label-info" th:text="${session.user.name}"></span>
+						</h1>
+					</div>
+					<div class="user-information">
+						<p th:text="${session.user.about}">About</p>
+					</div>
+				</div>
+			</div>
+			<!-- 
+					<div class="panel-footer white-content">
+						<ul class="profile-info">
+							<li><i class="glyphicon glyphicon-phone"></i> <span
+								th:text="${session.user.phone}"></span></li>
+							<li><i class="glyphicon glyphicon-map-marker"></i> <span
+								th:text="${session.user.birthplace}"></span></li>
+							<li><i class="glyphicon glyphicon-envelope"></i> <span
+								th:text="${session.user.email}"></span></li>
+							<li><i class="glyphicon glyphicon-edit"></i> <span
+								th:text="${session.user.birthdate}"></span></li>
+						</ul>
+					</div>
+					 -->
+		</div>
+		<!-- User navigation bar -->
+		<div th:fragment="user-nav" class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs">
+					<li id="rated"><a href="/user/rated" th:href="@{/user/rated}"><span
+							class="glyphicon glyphicon-home"> Rated Places (</span><span
+							th:text='${session.user!=null ? session.user.ratings.size() : ""}'></span><span>)</span></a></li>
+					<li id="lived"><a href="/user/lived" th:href="@{/user/lived}"><span
+							class="glyphicon glyphicon-user"> Lived Places (</span><span
+							th:text='${session.user!=null ? session.user.livings.size() : ""}'></span><span>)</span></a></li>
+					<li id="traveled"><a href="/user/traveled"
+						th:href="@{/user/traveled}"><span
+							class="glyphicon glyphicon-home"> Traveled Places (</span><span
+							th:text='${session.user!=null ? session.user.travelings.size() : ""}'></span><span>)</span></a></li>
+					<li id="followed"><a href="/user/followed"
+						th:href="@{/user/followed}"><span
+							class="glyphicon glyphicon-home"> Following (</span><span
+							th:text='${session.user!=null ? session.user.followings.size() : ""}'></span><span>)</span></a></li>
+					<li id="follower"><a href="/user/followed"
+						th:href="@{/user/created}"><span
+							class="glyphicon glyphicon-home"> Created Places (</span><span
+							th:text='${session.user!=null ? session.user.creatings.size() : ""}'></span>)</a></li>
+				</ul>
+			</div>
+		</div>
+		<div th:fragment="nav" class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-pills">
+					<li role="presentation"><a href="/customer/"
+						th:href="@{/customer/}"><b>CUSTOMERS</b></a></li>
+					<li role="presentation"><a href="/order/" th:href="@{/order/}"><b>ORDERS</b></a></li>
+					<li role="presentation"><a href="/product/"
+						th:href="@{/product/}"><b>PRODUCTS</b></a></li>
+					<li role="presentation"><a href="/supplier/"
+						th:href="@{/supplier/}"><b>SUPPLIERS</b></a></li>
+					<li role="presentation"><a href="/category/"
+						th:href="@{/category/}"><b>CATEGORIES</b></a></li>
+				</ul>
+			</div>
+		</div>
+		<div th:fragment="footer" class="page-header">
+			<div>footer</div>
+		</div>
+	</div>
+	<div th:fragment="script">
+		<script src="/js/jquery/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery/jquery-2.2.3.min.js}"></script>
+		<script src="/js/custom/star-rating.js"
+			th:src="@{/js/custom/star-rating.js}"></script>
+		<script src="/bootstrap-3.3.5/js/bootstrap.js"
+			th:src="@{/bootstrap-3.3.5/js/bootstrap.js}"></script>
+		<script src="/js/custom/route.js" th:src="@{/js/custom/route.js}"></script>
+	</div>
+</body>
+</html>

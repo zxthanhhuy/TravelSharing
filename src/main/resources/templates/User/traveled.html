@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_nw_temp :: header ('PRODUCT INDEX')">
+</head>
+<body>
+	<div class="container">
+		<nav th:replace="_nw_temp:: navbar"></nav>
+		<div th:replace="_nw_temp:: user-profile"></div>
+		<div th:replace="_nw_temp :: user-nav"></div>
+		<div class="row" th:fragment="user-profile">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				th:if="${session.user.travelings}">
+				<div class="panel panel-default plain profile-panel"
+					th:each="traveling : ${session.user.travelings}">
+					<div class="panel-body">
+						<div class="col-lg-2 col-md-2 col-sm-12">
+							<div class="profile-avatar">
+								<img class="img-responsive"
+									th:src="@{'/images/places/default.jpg'}"
+									alt="profile picture" />
+							</div>
+							<div class="profile-stats-info">
+								<a href="#" title="Views"> <i
+									class="glyphicon glyphicon-eye-open"> </i> <strong>2000</strong></a>
+								<a href="#" title="Comments"> <i
+									class="glyphicon glyphicon-comment"> </i> <strong>120</strong></a>
+								<a href="#" title="Likes"> <i
+									class="glyphicon glyphicon-thumbs-up"> </i> <strong>60</strong></a>
+							</div>
+						</div>
+						<div class="col-lg-10 col-md-10 col-sm-12">
+							<div class="user-name">
+								<h3>
+									You have traveled to <span class="label label-info"
+										th:text="${traveling.place.placeName}"></span> on <span
+										th:text="${traveling.startDate}"></span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer white-content">
+						<p>Theo ông Ngô Hải Đường, Trưởng phòng khai thác hạ tầng
+							đường bộ Sở GTVT TP HCM, hiện nay trên địa bàn TP có 28 cầu yếu.
+							Ông Đường thông tin thêm trên tuyến đường Lê Văn Lương hiện có 4
+							cầu yếu, hẹp, mất an toàn giao thông, không đảm bảo xe cơ giới
+							như cầu Long Kiểng, Rạch Dơi, Rạch Tôm… Sở đã có phương án thi
+							công đồng bộ cả 4 cây cầu để đảm bảo an toàn giao thông nối TP
+							HCM với phía Đông các tỉnh Long An, Tiền Giang.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:replace="_nw_temp :: footer"></div>
+		<div th:include="_nw_temp :: script"></div>
+	</div>
+
+</body>
+</html>
+<script>
+	$(document).ready(function() {
+		$(".stars-default").rating('create');
+	});
+</script>
